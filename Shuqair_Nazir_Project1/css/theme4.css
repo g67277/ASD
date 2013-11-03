@@ -50,6 +50,10 @@
 	
 }
 
+.delete{
+	text-align:left;
+}
+
 .ui-bar-a .ui-link-inherit {
 	color: #ffffff /*{a-bar-color}*/;
 }

@@ -55,16 +55,26 @@ $('#bets').on('pageinit', function(){
 				var team2 = obj[3].value;
 				var amount = obj[4].value;
 				
-				$('.display ul').append('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' +'</li>');
+				$('.display ul').append('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + '<a href="#" data-key="' + key + '" class="delete" style="text-align:left">' + "Delete" + '</a>' +'</li>');
 	}
 	
-	$('.edit').on('click', function(){
+$('.edit').on('click', function(){
 		var myKey= $(this).data('key');
-		alert(myKey);
+		var value = localStorage.getItem(myKey);
+		var obj = JSON.parse(value);
+		$('#betDate').val(obj[0].value);
+		$('#friendName').val(obj[1].value);
+		$('#team1').val(obj[2].value);
+		$('#team2').val(obj[3].value);
+		$('#amount').val(obj[4].value);
 	});	
 
+	$('.delete').on('click', function(){
+			var myKey= $(this).data('key');
+			localStorage.removeItem(myKey);
+			window.location.reload(true);
+	});	
 });
-
 
 
 $('.resetBtn').on('click', function(){
