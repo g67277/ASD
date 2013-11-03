@@ -55,7 +55,7 @@ $('#bets').on('pageinit', function(){
 				var team2 = obj[3].value;
 				var amount = obj[4].value;
 				
-				$('.display ul').append('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + '<a href="#" data-key="' + key + '" class="delete" style="text-align:left">' + "Delete" + '</a>' +'</li>');
+				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + '<a href="#" data-key="' + key + '" class="delete" style="text-align:left">' + "Delete" + '</a>' +'</li>').prependTo('.display ul');
 	}
 	
 $('.edit').on('click', function(){
