@@ -55,7 +55,7 @@ $('#schedule').on('pageinit', function(){
 				var fname = obj[1].value;
 				var pocNum = obj[2].value;
 				
-				$('.display ul').prepend("Bet Date: " + bdate + '<br>');
+				$('.display ul').prepend('<li class="ui-li ui-li-static ui-btn-up-a">' + "Bet Date: " + bdate + '<br>' + "Name: " + fname + '<br>' + "POC Num: " + pocNum + '</li>');
 	}
 	
 
