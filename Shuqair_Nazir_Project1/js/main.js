@@ -44,7 +44,7 @@ $('#bets').on('pageinit', function(){
 				
 				console.log(localStorage.length);
                 
-                var key = localStorage.key(i);
+                key = localStorage.key(i);
                 var value = localStorage.getItem(key);
                 //Convert String from localStorage value back to an object by using JSON parse
                 var obj = JSON.parse(value);
@@ -55,8 +55,18 @@ $('#bets').on('pageinit', function(){
 				var team2 = obj[3].value;
 				var amount = obj[4].value;
 				
-				$('.display ul').prepend('<li class="ui-li ui-li-static ui-btn-up-a">' + "Bet Date: " + bdate + '<br>' + "With: " + friendName + '<br>' + "Your Team: " + team1 + '<br>' + friendName + " team: " + team2 + '<br>' + "For: " + amount + "$" + '</li>');
+				$('.display ul').append('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' +'</li>');
 	}
 	
+	$('.edit').on('click', function(){
+		var myKey= $(this).data('key');
+		alert(myKey);
+	});	
 
+});
+
+
+
+$('.resetBtn').on('click', function(){
+	window.location.reload(true);
 });
