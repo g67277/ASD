@@ -1,0 +1,74 @@
+{
+	"match1" : {
+		"match" : ["South Africa VS Mexico"],
+		"group" : ["A"],
+		"date" : ["June 11"],
+		"time" : ["05:30 pm"]
+	},
+	"match2" : {
+		"match" : ["Uruguay VS France"],
+		"group" : ["A"],
+		"date" : ["June 11"],
+		"time" : ["08:30 pm"]
+	},
+	"match3" : {
+		"match" : ["South Africa VS Uruguay"],
+		"group" : ["A"],
+		"date" : ["June 16"],
+		"time" : ["08:30 pm"]
+	},
+	"match4" : {
+		"match" : ["France VS Mexico"],
+		"group" :  ["A"],
+		"date" : ["June 17"],
+		"time" : ["08:30"]
+	},
+	"match5" : {
+		"match" : ["Mexico VS Uruguay"],
+		"group" : ["A"],
+		"date" : ["June 22"],
+		"time" : ["04:00 pm"]
+	},
+	"match6" : {
+		"match" : ["France VS South Africa"],
+		"group" : ["A"],
+		"date" : ["June 22"],
+		"time" : ["04:00 pm"]
+	}, 
+	"match7" : {
+		"match" : ["Argentina VS Nigeria"],
+		"group" : ["B"],
+		"date" : ["June 12 "],
+		"time" : ["04:00 pm"]
+	},
+	"match8" : {
+		"match" : ["Korea Republic VS Cress "],
+		"group" : ["B"],
+		"date" : ["June 12"],
+		"time" : ["03:30 pm"]
+	},
+	"match9" : {
+		"match" : ["Greece VS Nigeria"],
+		"group" : ["B"],
+		"date" : ["June 17"],
+		"time" : ["04:00 pm"]
+	},
+	"match10" : {
+		"match" : ["Argentina VS Korea Republic"],
+		"group" : ["B"],
+		"date" : ["June  17"],
+		"time" : ["03:30 pm"]
+	},
+	"match11" : {
+		"match" : ["Nigeria VS Korea Republic"],
+		"group" : ["B"],
+		"date" : ["June 22"],
+		"time" : ["08:30 pm"]
+	},
+	"match12" : {
+		"match" : ["Greece VS Argentina"],
+		"group" : ["B"],
+		"date" : ["June 22"],
+		"time" : ["08:30 pm"]
+	}
+}

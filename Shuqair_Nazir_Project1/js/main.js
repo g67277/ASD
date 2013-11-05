@@ -4,6 +4,14 @@
 
 $('#home').on('pageinit', function(){
 	//code needed for home page goes here
+	$.ajax({
+		url: 'xhr/groupANB.json',
+		type: 'GET',
+		dataType:'json',
+		success: function(response){
+			console.log(response);
+		}
+	});
 });	
 		
 $('#track').on('pageinit', function(){
@@ -41,14 +49,11 @@ $('#track').on('pageinit', function(){
 $('#bets').on('pageinit', function(){
 	
 	for (i = 0, j = localStorage.length; i < j; i++) {
-				
-				console.log(localStorage.length);
                 
                 key = localStorage.key(i);
                 var value = localStorage.getItem(key);
                 //Convert String from localStorage value back to an object by using JSON parse
                 var obj = JSON.parse(value);
-				console.log(obj);
 				var bdate = obj[0].value;
 				var friendName = obj[1].value;
 				var team1 = obj[2].value;
@@ -75,6 +80,8 @@ $('.edit').on('click', function(){
 			window.location.reload(true);
 	});	
 });
+
+
 
 
 $('.resetBtn').on('click', function(){
