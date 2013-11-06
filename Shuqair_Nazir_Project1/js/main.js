@@ -16,13 +16,9 @@ $('#home').on('pageinit', function(){
 				//Convert String from localStorage value back to an object by using JSON parse
 				
 				var mtch = obj[i].match;
-				console.log(mtch);
 				var group = obj[i].group;
-				console.log(group);
 				var mDate = obj[i].date;
-				console.log(mDate);
 				var mTime = obj[i].time;
-				console.log(mTime);
 				
 				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
 			}
