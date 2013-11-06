@@ -24,9 +24,31 @@ $('#home').on('pageinit', function(){
 				var mTime = obj[i].time;
 				console.log(mTime);
 				
-				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').prependTo('.matchDis ul');
+				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
 			}
 		}
+	});
+	
+	$.ajax({
+		url: 'xhr/groupCND.xml',
+		type:'GET',
+		dataType: 'xml',
+		success: function( xml ){
+			var items = $( xml );
+			
+			for (var i = 13; i < 25; i++) {
+				items.find("match" + i).each(function(){
+					var item = $(this);
+					var mtch = (item.find("match").text());
+					var group = (item.find("group").text());
+					var mDate = (item.find("date").text());
+					var mTime = (item.find("time").text());
+					
+					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
+				});
+	
+			}
+		}	
 	});
 });	
 		
