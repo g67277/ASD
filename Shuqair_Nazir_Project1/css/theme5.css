@@ -26,6 +26,31 @@
 	background-image:      -o-linear-gradient( #fcfcfc /*{a-bar-background-start}*/, #FFFFFF /*{a-bar-background-end}*/); /* Opera 11.10+ */
 	background-image:         linear-gradient( #fcfcfc /*{a-bar-background-start}*/, #FFFFFF /*{a-bar-background-end}*/);
 }
+
+#betsH2{
+margin-top:-6px;
+text-align:left;
+color:#F90;
+}
+
+#betsP{
+text-align:center;
+margin-right:30px;
+margin-top:-30px;
+}
+
+#dateP{
+text-align:right;
+margin-right:40px;
+font-size:14px;
+margin-top:-30px;
+padding-bottom:-60px;
+}
+
+.delete{
+text-align:left;
+}
+
 .ui-bar-a .ui-link-inherit {
 	color: #3e3e3e /*{a-bar-color}*/;
 }
