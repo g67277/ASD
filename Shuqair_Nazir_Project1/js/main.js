@@ -75,7 +75,7 @@ $('#track').on('pageinit', function(){
 	console.log(data);
 	alert("Meeting Saved!");
 	
-}; 
+	}; 
 
 
 });
@@ -101,6 +101,7 @@ $('.edit').on('click', function(){
 		var myKey= $(this).data('key');
 		var value = localStorage.getItem(myKey);
 		var obj = JSON.parse(value);
+		$('#key').val(myKey);
 		$('#betDate').val(obj[0].value);
 		$('#friendName').val(obj[1].value);
 		$('#team1').val(obj[2].value);
