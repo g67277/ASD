@@ -20,10 +20,11 @@ $('#home').on('pageinit', function(){
 				var mDate = obj[i].date;
 				var mTime = obj[i].time;
 				
-				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
+				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
 			}
 		}
 	});
+	
 	
 	$.ajax({
 		url: 'xhr/groupCND.xml',
@@ -40,7 +41,7 @@ $('#home').on('pageinit', function(){
 					var mDate = (item.find("date").text());
 					var mTime = (item.find("time").text());
 					
-					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1>' + mtch + '</h1>' + '<br>' + '<h3>' + group + '</h3>' + '<p>' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
+					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
 				});
 	
 			}
@@ -94,7 +95,7 @@ $('#bets').on('pageinit', function(){
 				var team2 = obj[3].value;
 				var amount = obj[4].value;
 				
-				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + '<a href="#" data-key="' + key + '" class="delete" style="text-align:left">' + "Delete" + '</a>' +'</li>').prependTo('.display ul');
+				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " "+'<a href="#" data-key="' + key + '"  style="text-align:left">' + "Delete" + '</a>' +'</li>').prependTo('.display ul');
 	}
 	
 $('.edit').on('click', function(){
