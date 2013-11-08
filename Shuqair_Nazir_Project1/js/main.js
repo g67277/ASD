@@ -95,7 +95,7 @@ $('#bets').on('pageinit', function(){
 				var team2 = obj[3].value;
 				var amount = obj[4].value;
 				
-				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " "+'<a href="#" data-key="' + key + '"  style="text-align:left">' + "Delete" + '</a>' +'</li>').prependTo('.display ul');
+				$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " "+'<a href="#" data-key="' + key + '"class="delete">' + "Delete" + '</a>' +'</li>').prependTo('.display ul');
 	}
 	
 $('.edit').on('click', function(){
@@ -112,6 +112,7 @@ $('.edit').on('click', function(){
 
 	$('.delete').on('click', function(){
 			var myKey= $(this).data('key');
+			console.log(myKey);
 			localStorage.removeItem(myKey);
 			window.location.reload(true);
 	});	
