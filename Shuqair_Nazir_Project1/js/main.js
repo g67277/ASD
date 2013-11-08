@@ -1,6 +1,6 @@
 // Nazir Shuqair
 // ASD 1310
-// 10-29-2013
+// 11-07-2013
 
 $('#home').on('pageinit', function(){
 	//code needed for home page goes here
