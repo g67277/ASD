@@ -1,0 +1,27 @@
+{
+    "bets": [
+        [
+            {
+                "name": "betDate",
+                "value": "11/11/1111"
+            },
+            {
+                "name": "friendName",
+                "value": "Ahmed"
+            },
+            {
+                "name": "team1",
+                "value": "France"
+            },
+            {
+                "name": "team2",
+                "value": "Mexico"
+            },
+            {
+                "name": "amount",
+                "value": "500.5"
+            }
+        ]
+     
+    ]
+}
