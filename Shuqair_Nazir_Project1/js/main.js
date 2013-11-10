@@ -96,7 +96,6 @@ $('#bets').on('pageinit', function () {
 		if(localStorage.length === 0){
 			alert("No Bets yet *****Default Loaded*****");
 			autoFill();
-		
 		}else{
 			console.log(localStorage);
 			for (i = 0, j = localStorage.length; i < j; i++) {
