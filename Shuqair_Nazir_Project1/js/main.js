@@ -1,7 +1,11 @@
 // Nazir Shuqair
 // ASD 1310
 // 11-07-2013
+$('#main').on('pageinit', function () {
+	$('a').css('textDecoration','none');
+});
 $('#home').on('pageinit', function () {
+	$('a').css('textDecoration','none');
     //code needed for home page goes here
     $('#jsonB').click(function () {
         $.ajax({
@@ -151,9 +155,13 @@ $('#bets').on('pageinit', function () {
 
     $('.delete').on('click', function () {
         var myKey = $(this).data('key');
-        console.log(myKey);
-        localStorage.removeItem(myKey);
-        window.location.reload(true);
+		var r=confirm("Are you sure?");
+		console.log(r);
+		if (r==true){
+			localStorage.removeItem(myKey);
+			window.location.reload(true);
+		}else{
+		}
     });
 });
 
