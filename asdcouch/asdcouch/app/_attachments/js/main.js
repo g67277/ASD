@@ -7,25 +7,20 @@ $('#main').on('pageinit', function () {
 $('#home').on('pageinit', function () {
 	$('a').css('textDecoration','none');
     //code needed for home page goes here
-    $('#jsonB').click(function () {
+    $('#groupA').click(function () {
         $.ajax({
-            url: 'xhr/groupANB.json',
+            url: 'http://127.0.0.1:5984/bet_tracker/_design/app/_view/group_a',
             type: 'GET',
             dataType: 'json',
             success: function (response) {
-
-                var obj = response.matches;
-                for (i = 0, j = obj.length; i < j; i++) {
-
-                    //Convert String from localStorage value back to an object by using JSON parse
-
-                    var mtch = obj[i].match;
-                    var group = obj[i].group;
-                    var mDate = obj[i].date;
-                    var mTime = obj[i].time;
-
-                    $('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
-                }
+				$.each(response.rows, function(index, groupA){
+					var mtch = groupA.value.match;
+                    var group = groupA.value.group;
+                    var mDate = groupA.value.date;
+                    var mTime = groupA.value.time;
+					
+					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
+				})
             },
             error: function (error, parseerror) {
                 console.log(error, parseerror);
@@ -33,26 +28,20 @@ $('#home').on('pageinit', function () {
         });
     });
 
-    $('#xmlB').click(function () {
+    $('#groupB').click(function () {
         $.ajax({
-            url: 'xhr/groupCND.xml',
+            url: 'http://127.0.0.1:5984/bet_tracker/_design/app/_view/group_b',
             type: 'GET',
-            dataType: 'xml',
-            success: function (xml) {
-                var items = $(xml);
-
-                for (var i = 13; i < 25; i++) {
-                    items.find("match" + i).each(function () {
-                        var item = $(this);
-                        var mtch = (item.find("match").text());
-                        var group = (item.find("group").text());
-                        var mDate = (item.find("date").text());
-                        var mTime = (item.find("time").text());
-
-                        $('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
-                    });
-
-                }
+            dataType: 'json',
+            success: function (response) {
+				$.each(response.rows, function(index, groupA){
+					var mtch = groupA.value.match;
+                    var group = groupA.value.group;
+                    var mDate = groupA.value.date;
+                    var mTime = groupA.value.time;
+					
+					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h1 id="betsH2">' + mtch + '</h1>' + '<br>' + '<p id="betsP">' + group + '</p>' + '<p id="dnt">' + mDate + " " + mTime + '</p>' + '</li>').appendTo('.matchDis ul');
+				})
             },
             error: function (error, parseerror) {
                 console.log(error, parseerror);
@@ -171,14 +160,14 @@ $('.resetBtn').on('click', function () {
 
 $('#test').on('pageinit', function(){
 	$.ajax({
-            url: 'http://127.0.0.1:5984/bet_tracker/_design/app/_view/matches',
+            url: 'http://127.0.0.1:5984/bet_tracker/_design/app/_view/bets',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
 				
-				$.each(data.rows, function(index, defautlMtch){
-					var team1 = defautlMtch.value.team1;
-					console.log(team1);
+				$.each(data.rows, function(index, defaultBets){
+					var team1 = defaultBets.value.team1;
+					console.log(defaultBets);
 				})
 				
 				
