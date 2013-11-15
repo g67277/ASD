@@ -189,6 +189,32 @@
             </div>
        	</section>
    </section>
+   <section data-role="page" id="test" data-theme="a">
+       <section data-role="panel" id="mypanel" data-position="left" data-position-fixed="true" data-theme="d">
+                <ul data-role="listview" data-inset="false" data-theme="d">
+                    <li data-role="list-divider" data-theme="d">Bet-Tracker</li>
+                    <li><a href="#home" data-icon="refresh">Home</a>
+                    </li>
+                    <li><a href="#bets" data-icon="info">Bets so far</a>
+                    </li>
+                    <li><a href="#options" data-icon="refresh">Options</a>
+                    </li>
+                </ul>
+            </section>
+            <header data-role="header" data-theme="a" data-position="fixed">
+                <div style="text-align:center" onclick="window.location.href='#home'">
+                    <img border="0" src="img/logo_lg_2.png" class="logo" style="width: 50%" />
+                </div>
+                <a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="a" data-inline="true"></a>
+                <a href="#bets" data-role="button" data-icon="grid" data-iconpos="notext" data-theme="a" data-inline="true"></a>
+                <h1>Bet Now</h1>
+            </header>
+   		<section data-role="content" data-theme="a" class="test">
+        	<ul data-role="listview" data-inset="true" data-filter="true">
+                
+             </ul>
+        </section>
+   </section>
     
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

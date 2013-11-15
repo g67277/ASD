@@ -168,3 +168,26 @@ $('#bets').on('pageinit', function () {
 $('.resetBtn').on('click', function () {
     window.location.reload(true);
 });
+
+$('#test').on('pageinit', function(){
+	$.ajax({
+            url: 'http://127.0.0.1:5984/bet_tracker/_design/app/_view/matches',
+            type: 'GET',
+            dataType: 'json',
+            success: function (testing) {
+				
+				console.log(testing);
+
+                /*var obj = response.bets;
+				for (var n in obj) {
+            		var id = Math.floor(Math.random() * 100001);
+            		localStorage.setItem(id, JSON.stringify(obj[n]));
+        		}
+				window.location.reload(true);  
+            },
+            error: function (error, parseerror) {
+                console.log(error, parseerror);*/
+            }
+        });	
+
+})
