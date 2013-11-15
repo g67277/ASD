@@ -2,6 +2,9 @@
   "env": {
     "local": {
       "db": "http://127.0.0.1:5984/bet_tracker"
+    },
+    "cloudant": {
+      "db": "https://thalfrodulikeseveryinsel:5J7TUigiopQ28Yl2rqyJxijg@nshuqair.cloudant.com/bet_tracker"
     }
   }
 }
