@@ -15,6 +15,7 @@ $('#home').on('pageinit', function () {
             type: 'GET',
             dataType: 'json',
             success: function (response) {
+        		$('.matchDis ul').empty();
                 $.each(response.rows, function (index, groupA) {
                     var mtch = groupA.value.match;
                     var group = groupA.value.group;
@@ -38,6 +39,7 @@ $('#home').on('pageinit', function () {
             type: 'GET',
             dataType: 'json',
             success: function (response) {
+        		$('.matchDis ul').empty();
                 $.each(response.rows, function (index, groupA) {
                     var mtch = groupA.value.match;
                     var group = groupA.value.group;
