@@ -76,13 +76,16 @@ $('#track').on('pageinit', function () {
 
     var storeData = function (data) {
 
+		var sObj = {}
+		
         if ($('#key').val() == '') {
-            var key = Math.floor(Math.random() * 100001);
+			
         } else {
-            var key = $('#key').val();
+            sObj._id = $('#key').val();
+			sObj._rev = $('#rev').val();
         }
 		
-		var sObj = {}
+		
 		sObj.bdate = data[0].value;
 		sObj.friendName = data[1].value;
 		sObj.team1 = data[2].value;
@@ -96,18 +99,37 @@ $('#track').on('pageinit', function () {
 			success: function() {console.log("Saved successfuly")},
 			error: function() {console.log("error!")}
 		});
-		alert("saved successfully")
+		alert("saved successfully");
 
     };
 
 
 });
 
-$('#bets').on('pageinit', function () {
+$(document).on('pageinit', '#bets', function () {
 
     /************************************************Display Data*********************************************/
-
-    if (localStorage.length === 0) {
+		$.couch.db('bet_tracker').view("bet_tracker/bets", {
+			success: function(data){
+				//console.log(data);
+				$.each(data.rows, function(index, result){
+					var item = result.value;
+					var bdate = item.betDate;
+					var friendName = item.friendName;
+					var team1 = item.team1;
+					var team2 = item.team2;
+					var amount = item.amount;
+					var doc_id = item.id;
+					var doc_rev = item.rev;
+					console.log(doc_id + " " + doc_rev);
+					
+					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " " + '<a href="#" data-key="' + key + '"class="delete">' + "Delete" + '</a>' + '</li>').prependTo('.display ul');
+					
+					
+				});
+			}
+		});
+   /* if (localStorage.length === 0) {
         alert("No Bets yet *****Default Loaded*****");
         autoFill();
     } else {
@@ -125,11 +147,11 @@ $('#bets').on('pageinit', function () {
 
             $('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " " + '<a href="#" data-key="' + key + '"class="delete">' + "Delete" + '</a>' + '</li>').prependTo('.display ul');
         }
-    }
+    }*/
 
     /************************************************Default data to local Storage*********************************************/
 
-    function autoFill() {
+   /* function autoFill() {
 
         $.ajax({
             url: '_view/default',
@@ -155,7 +177,7 @@ $('#bets').on('pageinit', function () {
                 console.log(error, parseerror);
             }
         });
-    }
+    }*/
 
     /************************************************Edit Function*********************************************/
 
@@ -176,12 +198,13 @@ $('#bets').on('pageinit', function () {
 
     $('.delete').on('click', function () {
         var myKey = $(this).data('key');
-        var r = confirm("Are you sure?");
+		console.log(myKey);
+        /*var r = confirm("Are you sure?");
         console.log(r);
         if (r == true) {
             localStorage.removeItem(myKey);
             window.location.reload(true);
-        } else {}
+        } else {}*/
     });
 	
 	/************************************************Delete All Function***************************************/
