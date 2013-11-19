@@ -1,6 +1,6 @@
 function(doc) {
-  if (doc._id.substr(0,2) == "4e:") {
-    emit(doc._id,{
+  if (doc._id.substr(0,8) === "default:") {
+    emit(doc._id.substr(8),{
     	"betDate": doc.betDate,
     	"friendName": doc.friendName,
     	"team1": doc.team1,

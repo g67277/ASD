@@ -41,6 +41,7 @@ $('#home').on('pageinit', function () {
             success: function (response) {
         		$('.matchDis ul').empty();
                 $.each(response.rows, function (index, groupA) {
+					console.log(response);
                     var mtch = groupA.value.match;
                     var group = groupA.value.group;
                     var mDate = groupA.value.date;
@@ -80,10 +81,22 @@ $('#track').on('pageinit', function () {
         } else {
             var key = $('#key').val();
         }
+		
+		var sObj = {}
+		sObj.bdate = data[0].value;
+		sObj.friendName = data[1].value;
+		sObj.team1 = data[2].value;
+		sObj.team2 = data[3].value;
+		sObj.amount = data[4].value;
+		
+		console.log(sObj);
 
-        localStorage.setItem(key, JSON.stringify(data));
-        console.log(data);
-        alert("Meeting Saved!");
+        /*localStorage.setItem(key, JSON.stringify(data));*/
+		$.couch.db('bet_tracker').saveDoc(sObj,{
+			success: function() {console.log("Saved successfuly")},
+			error: function() {console.log("error!")}
+		});
+		alert("saved successfully")
 
     };
 
@@ -98,7 +111,6 @@ $('#bets').on('pageinit', function () {
         alert("No Bets yet *****Default Loaded*****");
         autoFill();
     } else {
-        console.log(localStorage);
         for (i = 0, j = localStorage.length; i < j; i++) {
 
             key = localStorage.key(i);
@@ -120,7 +132,7 @@ $('#bets').on('pageinit', function () {
     function autoFill() {
 
         $.ajax({
-            url: '_view/bets',
+            url: '_view/default',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
