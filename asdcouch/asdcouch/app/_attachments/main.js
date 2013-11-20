@@ -15,7 +15,7 @@ $('#home').on('pageinit', function () {
             type: 'GET',
             dataType: 'json',
             success: function (response) {
-        		$('.matchDis ul').empty();
+                $('.matchDis ul').empty();
                 $.each(response.rows, function (index, groupA) {
                     var mtch = groupA.value.match;
                     var group = groupA.value.group;
@@ -39,9 +39,9 @@ $('#home').on('pageinit', function () {
             type: 'GET',
             dataType: 'json',
             success: function (response) {
-        		$('.matchDis ul').empty();
+                $('.matchDis ul').empty();
                 $.each(response.rows, function (index, groupA) {
-					console.log(response);
+                    console.log(response);
                     var mtch = groupA.value.match;
                     var group = groupA.value.group;
                     var mDate = groupA.value.date;
@@ -76,30 +76,34 @@ $('#track').on('pageinit', function () {
 
     var storeData = function (data) {
 
-		var sObj = {}
-		
+        var sObj = {}
+
         if ($('#key').val() == '') {
-			
+
         } else {
             sObj._id = $('#key').val();
-			sObj._rev = $('#rev').val();
+            sObj._rev = $('#rev').val();
         }
-		
-		
-		sObj.bdate = data[0].value;
-		sObj.friendName = data[1].value;
-		sObj.team1 = data[2].value;
-		sObj.team2 = data[3].value;
-		sObj.amount = data[4].value;
-		
-		console.log(sObj);
+
+
+        sObj.bdate = data[0].value;
+        sObj.friendName = data[1].value;
+        sObj.team1 = data[2].value;
+        sObj.team2 = data[3].value;
+        sObj.amount = data[4].value;
+
+        console.log(sObj);
 
         /*localStorage.setItem(key, JSON.stringify(data));*/
-		$.couch.db('bet_tracker').saveDoc(sObj,{
-			success: function() {console.log("Saved successfuly")},
-			error: function() {console.log("error!")}
-		});
-		alert("saved successfully");
+        $.couch.db('bet_tracker').saveDoc(sObj, {
+            success: function () {
+                console.log("Saved successfuly")
+            },
+            error: function () {
+                console.log("error!")
+            }
+        });
+        alert("saved successfully");
 
     };
 
@@ -109,27 +113,26 @@ $('#track').on('pageinit', function () {
 $(document).on('pageinit', '#bets', function () {
 
     /************************************************Display Data*********************************************/
-		$.couch.db('bet_tracker').view("bet_tracker/bets", {
-			success: function(data){
-				//console.log(data);
-				$.each(data.rows, function(index, result){
-					var item = result.value;
-					var bdate = item.betDate;
-					var friendName = item.friendName;
-					var team1 = item.team1;
-					var team2 = item.team2;
-					var amount = item.amount;
-					var doc_id = item.id;
-					var doc_rev = item.rev;
-					console.log(doc_id + " " + doc_rev);
-					
-					$('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '" class="edit">' + "Edit" + '</a>' + " " + '<a href="#" data-key="' + key + '"class="delete">' + "Delete" + '</a>' + '</li>').prependTo('.display ul');
-					
-					
-				});
-			}
-		});
-   /* if (localStorage.length === 0) {
+    $.couch.db('bet_tracker').view("bet_tracker/bets", {
+        success: function (data) {
+            //console.log(data);
+            $.each(data.rows, function (index, result) {
+                var item = result.value;
+                var bdate = item.betDate;
+                var friendName = item.friendName;
+                var team1 = item.team1;
+                var team2 = item.team2;
+                var amount = item.amount;
+                var key = item.id;
+                var rev = item.rev;
+
+                $('<li class="ui-li ui-li-static ui-btn-up-a">' + '<h2 id="betsH2">' + team1 + " VS " + team2 + '</h2>' + '<br>' + '<p id="betsP">' + "With " + friendName + " for " + amount + "$" + '</p>' + '<br>' + '<p id="dateP">' + "Date: " + bdate + '</p>' + '<a href="#track" data-key="' + key + '"data-rev="' + rev + '" class="edit">' + "Edit" + '</a>' + " " + '<a href="#" data-key="' + key + '" data-rev="' + rev + '"class="delete">' + "Delete" + '</a>' + '</li>').prependTo('.display ul');
+
+
+            });
+
+
+            /* if (localStorage.length === 0) {
         alert("No Bets yet *****Default Loaded*****");
         autoFill();
     } else {
@@ -149,9 +152,9 @@ $(document).on('pageinit', '#bets', function () {
         }
     }*/
 
-    /************************************************Default data to local Storage*********************************************/
+            /************************************************Default data to local Storage*********************************************/
 
-   /* function autoFill() {
+            /* function autoFill() {
 
         $.ajax({
             url: '_view/default',
@@ -179,11 +182,35 @@ $(document).on('pageinit', '#bets', function () {
         });
     }*/
 
-    /************************************************Edit Function*********************************************/
+            /************************************************Edit Function*********************************************/
 
-    $('.edit').on('click', function () {
-        var myKey = $(this).data('key');
-        var value = localStorage.getItem(myKey);
+            $('.edit').on('click', function () {
+                var id = $(this).data('key');
+				var rev = $(this).data('rev');
+				alert(rev);
+				$.couch.db("bet_tracker").openDoc(id, {
+					success: function(item) {
+						var bdate = item.bdate;
+						var friendName = item.friendName;
+						var team1 = item.team1;
+						var team2 = item.team2;
+						var amount = item.amount;
+						console.log(item);
+						$('#key').val(id);
+						$('#rev').val(rev);
+						$('#betDate').val(bdate);
+						$('#friendName').val(friendName);
+						$('#team1').val(team1);
+						$('#team2').val(team2);
+						$('#amount').val(amount);
+					},
+					error: function(status) {
+						console.log(status);
+					}
+				});
+				alert("please come up!!!!");
+
+                /* var value = localStorage.getItem(myKey);
         var obj = JSON.parse(value);
         console.log(obj);
         $('#key').val(myKey);
@@ -191,38 +218,57 @@ $(document).on('pageinit', '#bets', function () {
         $('#friendName').val(obj[1].value);
         $('#team1').val(obj[2].value);
         $('#team2').val(obj[3].value);
-        $('#amount').val(obj[4].value);
-    });
+        $('#amount').val(obj[4].value);*/
+            });
 
-    /************************************************Delete Function***************************************/
+            /************************************************Delete Function***************************************/
 
-    $('.delete').on('click', function () {
-        var myKey = $(this).data('key');
-		console.log(myKey);
-        /*var r = confirm("Are you sure?");
+            $('.delete').on('click', function () {
+                var id = $(this).data('key');
+                var rev = $(this).data('rev');
+
+                var obj = {};
+                obj._id = id;
+                obj._rev = rev;
+                var r = confirm("Are you sure?");
+                console.log(r);
+                if (r == true) {
+                    $.couch.db('bet_tracker').removeDoc(obj, {
+                        success: function () {
+                            console.log("deleted");
+							
+                        },
+                        error: function () {
+                            console.log("error!")
+                        }
+                    });
+                    window.location.reload(true);
+                } else {}
+                /*var r = confirm("Are you sure?");
         console.log(r);
         if (r == true) {
             localStorage.removeItem(myKey);
             window.location.reload(true);
         } else {}*/
+            });
+
+            /************************************************Delete All Function***************************************/
+
+            $('#clearAll').on('click', function () {
+
+                if (localStorage.length === 0) {
+                    alert("Nothing to clear!")
+                } else {
+                    var r = confirm("Are you sure you want to delete everything?");
+                    if (r == true) {
+                        localStorage.clear();
+                        window.location.reload();
+                        return false;
+                    } else {}
+                }
+            })
+        }
     });
-	
-	/************************************************Delete All Function***************************************/
-	
-	$('#clearAll').on('click', function () {
-		
-		if (localStorage.length === 0) {
-            alert("Nothing to clear!")
-        } else {
-			var r = confirm("Are you sure you want to delete everything?");
-			if(r == true){
-				localStorage.clear();
-				window.location.reload();
-				return false;
-			}else{	
-			}  
-        }	
-	})
 });
 
 

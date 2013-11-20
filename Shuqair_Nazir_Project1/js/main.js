@@ -139,6 +139,7 @@ $('#bets').on('pageinit', function () {
 
     $('.edit').on('click', function () {
         var myKey = $(this).data('key');
+		alert(myKey);
         var value = localStorage.getItem(myKey);
         var obj = JSON.parse(value);
 		console.log(obj);
