@@ -103,7 +103,7 @@ $('#track').on('pageinit', function () {
                 console.log("error!")
             }
         });
-        alert("saved successfully");
+        alert("Bet Saved!");
 
     };
 
@@ -187,7 +187,6 @@ $(document).on('pageinit', '#bets', function () {
             $('.edit').on('click', function () {
                 var id = $(this).data('key');
 				var rev = $(this).data('rev');
-				alert(rev);
 				$.couch.db("bet_tracker").openDoc(id, {
 					success: function(item) {
 						var bdate = item.bdate;
@@ -195,7 +194,6 @@ $(document).on('pageinit', '#bets', function () {
 						var team1 = item.team1;
 						var team2 = item.team2;
 						var amount = item.amount;
-						console.log(item);
 						$('#key').val(id);
 						$('#rev').val(rev);
 						$('#betDate').val(bdate);
@@ -208,7 +206,6 @@ $(document).on('pageinit', '#bets', function () {
 						console.log(status);
 					}
 				});
-				alert("please come up!!!!");
 
                 /* var value = localStorage.getItem(myKey);
         var obj = JSON.parse(value);
@@ -254,7 +251,7 @@ $(document).on('pageinit', '#bets', function () {
 
             /************************************************Delete All Function***************************************/
 
-            $('#clearAll').on('click', function () {
+            /*$('#clearAll').on('click', function () {
 
                 if (localStorage.length === 0) {
                     alert("Nothing to clear!")
@@ -266,7 +263,7 @@ $(document).on('pageinit', '#bets', function () {
                         return false;
                     } else {}
                 }
-            })
+            })*/
         }
     });
 });

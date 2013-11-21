@@ -1,5 +1,7 @@
 function(doc) {
-  if (doc._id.substr(0,2) == "4e") {
+  if (doc._id.substr(0,8) === "group:A:" || doc._id.substr(0,8) === "group:B:") {
+	  
+  }else{
     emit(doc._id,{
     	"betDate": doc.bdate,
     	"friendName": doc.friendName,
